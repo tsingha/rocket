@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rocket-chat-mongo-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rocket-chat-mongo-db
+  template:
+    metadata:
+      labels:
+        app: rocket-chat-mongo-db
+    spec:
+      containers:
+      - name: rocket-chat-mongo-db
+        image: mongo:4.0
+        command: ["/bin/sh", "-c"]
+        args: ["mongod --bind_ip_all --replSet rs0 --oplogSize 128"]
+        ports:
+          - name: mongo
+            containerPort: 27017
+        volumeMounts:
+        - name: rocket-chat-mongo-db-storage
+          mountPath: /data/db
+      volumes:
+      - name: rocket-chat-mongo-db-storage
+        emptyDir: {}
+

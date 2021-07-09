@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rocket-chat-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rocket-chat-server
+  template:
+    metadata:
+      labels:
+        app: rocket-chat-server
+    spec:
+      containers:
+        - name: rocket-chat-server
+          image: rocket.chat:3.13.5
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_URL
+              value: mongodb://rocket-chat-mongo-db-svc:27017/rocketchat
+            - name: MONGO_OPLOG_URL
+              value: mongodb://rocket-chat-mongo-db-svc:27017/local?replSet=rs0
+          imagePullPolicy: "IfNotPresent"

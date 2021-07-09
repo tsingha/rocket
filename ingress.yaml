@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: rocket-chat-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  tls:
+  - hosts:
+    - a595a4579b2eb43d4b4cfd3c3ed815ed-0cc9070e29794210.elb.us-east-2.amazonaws.com
+    secretName: tls-secret
+  rules:
+  - host: a595a4579b2eb43d4b4cfd3c3ed815ed-0cc9070e29794210.elb.us-east-2.amazonaws.com
+    http:
+      paths:
+      - backend:
+          serviceName: rocket-chat-server
+          servicePort: 3000
+        path: /
+
