@@ -1,4 +1,4 @@
-  Rocket Chat Application Run.
+Rocket Chat Application Run.
 
 1.	Install AWS CLI command utility
 
