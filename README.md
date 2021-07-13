@@ -63,34 +63,35 @@ Rocket Chat Application Run.
 
     No need to give tags its optional -> Next -> Create User.
 
-After these steps, AWS will provide you a Secret Access Key and Access Key ID. Save them preciously because this will be the only time AWS gives it to you.
+    After these steps, AWS will provide you a **Secret Access Key and Access Key ID. Save them preciously** because this will be the only time AWS gives it to you.
 
-Run the below command
+    **Run the below command**
+    ```
+    [root@docker ~]# aws configure
+    AWS Access Key ID [None]: <Provide the Access Key ID for your IAM user>
+    AWS Secret Access Key [None]: <Provide the Secret Access Key for your IAM user>
+    Default region name [None]:
+    Default output format [None]:
+    [root@docker ~]#
 
-[root@docker ~]# aws configure
-AWS Access Key ID [None]: <Provide the Access Key ID for your IAM user>
-AWS Secret Access Key [None]: <Provide the Secret Access Key for your IAM user>
-Default region name [None]:
-Default output format [None]:
-[root@docker ~]#
+    [root@docker ~]# cat .aws/credentials
+    [default]
+    aws_access_key_id = XXXXXXXXXXXXXXXXXXXX
+    aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXX
+    [root@docker ~]#
+    ```
+    **Show list of all the IAM user**
+    
+    [root@docker ~]# aws iam list-users
 
-[root@docker ~]# cat .aws/credentials
-[default]
-aws_access_key_id = XXXXXXXXXXXXXXXXXXXX
-aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXX
-[root@docker ~]#
-
-Show list of all the IAM user
-[root@docker ~]# aws iam list-users
-
-Returns details about the IAM user or role whose credentials are used to call the operation.
-[root@docker ~]# aws sts get-caller-identity
-{
-    "UserId": "XXXXXXXXXX",
-    "Account": "XXXXXXXXXX",
-    "Arn": "arn:aws:iam::XXXXXXXXX:user/eksctl"
-}
-[root@docker ~]#
+    Returns details about the IAM user or role whose credentials are used to call the operation.
+    [root@docker ~]# aws sts get-caller-identity
+    {
+        "UserId": "XXXXXXXXXX",
+        "Account": "XXXXXXXXXX",
+        "Arn": "arn:aws:iam::XXXXXXXXX:user/eksctl"
+    }
+    [root@docker ~]#
 
 6.	Install EKS Cluster using below command
 
