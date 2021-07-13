@@ -1,6 +1,8 @@
 # README.md
 
-Rocket Chat Application Run.
+Hello! Welcome to my Rocket Chat Automation. This task is automatically deploy a Rocket Chat Application on EKS environment. The EKS environment will be deployed using **EKSCTL**. Rocket Chat Application deployment is a HA deployment but MongoDB is standalone deployment. Also here we are using **NLB** and **Ingress** to control the load and traffic. Also we are using self signed certificate for https access. For continuous deployemnt we are using **Jenkins**.
+
+Before start create a Jump Server or Client Machine using Centos 7 and do the below task.
 
 1.	**Install AWS CLI command utility**
     ```
