@@ -169,6 +169,7 @@ Before start create a Jump Server or Client Machine using Centos 7 and do the be
     # kubectl get svc rocket-chat-server
     ```
 10.	**Deploy Network Load Balancer with the NGINX Ingress Controller**
+
     In AWS we use a Network load balancer (NLB) to expose the NGINX Ingress controller behind a Service of Type=LoadBalancer.
     ```
     # kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.48.1/deploy/static/provider/aws/deploy.yaml
